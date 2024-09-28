@@ -1,13 +1,21 @@
-from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QVBoxLayout, QWidget, QToolBar,
-    QAction, QStatusBar, QLabel, QSizePolicy, QHBoxLayout, QFrame
-)
-from PyQt5.QtCore import Qt, QTimer
+try:
+    from PyQt6.QtWidgets import (
+        QApplication, QMainWindow, QVBoxLayout, QWidget, QToolBar,
+        QAction, QStatusBar, QLabel, QSizePolicy, QHBoxLayout, QFrame
+    )
+    from PyQt6.QtCore import Qt, QTimer
+except ImportError:
+    from PyQt5.QtWidgets import (
+        QApplication, QMainWindow, QVBoxLayout, QWidget, QToolBar,
+        QAction, QStatusBar, QLabel, QSizePolicy, QHBoxLayout, QFrame
+    )
+    from PyQt5.QtCore import Qt, QTimer
+
 import psutil
 import sys
-from side_menu import SideMenuWidget 
-from content_loader import load_content  
 import time
+from side_menu import SideMenuWidget
+from content_loader import load_content
 
 class TerminalStatusBar(QStatusBar):
     def __init__(self, parent=None):
@@ -49,8 +57,6 @@ class TerminalStatusBar(QStatusBar):
         memory_usage = memory_info.percent
         self.stats_label.setText(f"CPU: {cpu_usage}% | Memory: {memory_usage}%")
 
-
-
 class InsightHubMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -65,12 +71,12 @@ class InsightHubMainWindow(QMainWindow):
         # Main Layout Setup
         self.main_layout = QVBoxLayout(self.main_widget)
         self.main_layout.setContentsMargins(0, 0, 0, 0)  # No margins to use full available space
-        self.main_layout.setSpacing(0)  
+        self.main_layout.setSpacing(0)
 
         # Create a horizontal layout to arrange the side menu and the central content
         self.horizontal_layout = QHBoxLayout()
         self.horizontal_layout.setContentsMargins(0, 0, 0, 0)  # No margins for the horizontal layout
-        self.horizontal_layout.setSpacing(0)  
+        self.horizontal_layout.setSpacing(0)
 
         # Initialize the side menu
         self.init_side_menu()
@@ -78,9 +84,9 @@ class InsightHubMainWindow(QMainWindow):
         # Central content widget
         self.central_content_widget = QWidget()
         self.central_content_layout = QVBoxLayout(self.central_content_widget)
-        self.central_content_layout.setContentsMargins(0, 0, 0, 0) 
-        self.central_content_layout.setSpacing(0) 
-        
+        self.central_content_layout.setContentsMargins(0, 0, 0, 0)
+        self.central_content_layout.setSpacing(0)
+
         # Create a frame to hold the content loaded from toolbar actions
         self.content_frame = QFrame()
         self.content_frame.setStyleSheet("background-color: #1b2b34;")  # Dark background for the frame
@@ -112,7 +118,7 @@ class InsightHubMainWindow(QMainWindow):
         for action in actions.values():
             self.toolbar.addAction(action)
 
-        # Connect actions
+        # Connect actions with proper lambda to avoid capturing the last value
         for name, action in actions.items():
             action.triggered.connect(lambda checked, n=name: load_content(self.content_frame, n))
 
@@ -124,7 +130,7 @@ class InsightHubMainWindow(QMainWindow):
         self.side_menu = QWidget()  # Use QWidget for side menu
         self.side_menu.setStyleSheet(
             "background-color: #1b2b34; color: #ecf0f1;"
-        )  
+        )
 
         # Use the SideMenuWidget defined in side-menu.py
         self.side_menu_widget = SideMenuWidget()
@@ -140,4 +146,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = InsightHubMainWindow()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
+
