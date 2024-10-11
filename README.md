@@ -14,7 +14,7 @@
 
 ## **Development Status**
 
-InsightHub is currently in the **discussion and planning phase**. While we have a clear vision of making this framework the definitive OSINT toolkit, the exact features and tools that will be included are still under consideration. The initial release will focus on providing a comprehensive set of built-in tools, with the ability to import additional tools expected in a subsequent update.
+InsightHub is currently in the **development phase**. While we have a clear vision of making this framework the definitive OSINT toolkit, the exact features and tools that will be included are still under consideration. The initial release will focus on providing a comprehensive set of built-in tools, with the ability to import additional tools expected in a subsequent update.
 
 ## **Join the Discussion**
 
