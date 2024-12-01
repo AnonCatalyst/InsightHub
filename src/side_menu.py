@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel, QPushButton, QSizePolicy
-)
+import subprocess
+import sys
+import threading
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QSizePolicy, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 
@@ -11,6 +12,7 @@ class SideMenuWidget(QWidget):
             "background-color: #1b2b34; color: #ecf0f1; border-left: 2px solid #000; border-bottom: 2px solid #000;"
         )
 
+        # Main Layout for Side Menu
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(15, 0, 15, 15)
         self.layout.setSpacing(10)
@@ -31,11 +33,11 @@ class SideMenuWidget(QWidget):
         )  # Adjusted padding for better spacing and appearance
         self.layout.addWidget(self.description)
 
-        # Side Menu Buttons
+        # Side Menu Buttons Layout
         self.buttons_layout = QVBoxLayout()
         self.buttons_layout.setSpacing(10)
 
-        # Updated button names with clearer emphasis
+        # List of button names
         button_names = [
             'Operations Dashboard',  # To track active and queued OSINT reports and investigations
             'Document Archive',  # For managing saved documents
@@ -46,8 +48,8 @@ class SideMenuWidget(QWidget):
             'Advanced Toolset'  # General tool suite
         ]
 
-        # Example buttons
-        self.example_buttons = []
+        # Create buttons dynamically
+        self.buttons = {}
         for name in button_names:
             button = QPushButton(name, self)
             button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
@@ -56,18 +58,66 @@ class SideMenuWidget(QWidget):
                 "border-radius: 5px; padding: 10px;"
             )  # Rounded corners, padding, and consistent color
             button.setFont(QFont('Arial', 12))
+            button.clicked.connect(self.on_button_click)
+            self.buttons[name] = button  # Store buttons in a dictionary for easy reference
             self.buttons_layout.addWidget(button)
-            self.example_buttons.append(button)
 
-        # Add buttons to the layout
+        # Add buttons layout to main layout
         self.layout.addLayout(self.buttons_layout)
 
-        # Set layout
+        # Set layout and fixed size for the side menu
         self.setLayout(self.layout)
-
-        # Set fixed size and disable resizing
         self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
         self.setMinimumWidth(222)  # Adjusted width for better appearance
         self.setMaximumWidth(290)  # Ensure consistent width
         self.setMinimumHeight(400)  # Adjusted minimum height
 
+    def on_button_click(self):
+        """Handle button click event to open relevant functionality"""
+        clicked_button = self.sender()
+        button_name = clicked_button.text()
+
+        # Here you can add logic to open specific sections when a button is clicked
+        if button_name == "Operations Dashboard":
+            print("Opening Operations Dashboard...")
+            self.run_script_in_background('src/sidemenu/op.py')
+        elif button_name == "Document Archive":
+            print("Opening Document Archive...")
+            self.run_script_in_background('src/sidemenu/documents.py')
+        elif button_name == "Documentation Center":
+            print("Opening Documentation Center...")
+            self.run_script_in_background('src/sidemenu/documenter.py')
+        elif button_name == "Compression Center":
+            print("Opening Compression Center...")
+            # Add logic to open Compression Center
+        elif button_name == "Secure File Transfer":
+            print("Opening Secure File Transfer...")
+            # Add logic to open Secure File Transfer
+        elif button_name == "GitHub Tool Integration":
+            print("Opening GitHub Tool Integration...")
+            # Add logic for GitHub Tool Integration
+        elif button_name == "Advanced Toolset":
+            print("Opening Advanced Toolset...")
+            # Add logic for Advanced Toolset
+
+    def run_script_in_background(self, script_path):
+        """Run the script in a separate thread to prevent freezing"""
+        thread = threading.Thread(target=self._run_script, args=(script_path,))
+        thread.start()
+
+    def _run_script(self, script_path):
+        """Run the script in subprocess"""
+        try:
+            subprocess.run([sys.executable, script_path], check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error occurred while trying to run {script_path}: {e}")
+            self.show_error_message(f"Error occurred while trying to run {script_path}: {e}")
+
+    def show_error_message(self, message):
+        """Show an error message in a dialog"""
+        error_dialog = QMessageBox(self)
+        error_dialog.setIcon(QMessageBox.Critical)
+        error_dialog.setText("An error occurred")
+        error_dialog.setInformativeText(message)
+        error_dialog.setWindowTitle("Error")
+        error_dialog.exec_()

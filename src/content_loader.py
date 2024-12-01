@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget
 import importlib
 
 def load_content(frame, option_name):
@@ -29,5 +29,3 @@ def load_content(frame, option_name):
         print(f"Module '{module_name}' not found")
     except AttributeError as e:
         print(f"Error: {e}")
-
-

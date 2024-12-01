@@ -57,6 +57,7 @@ class TerminalStatusBar(QStatusBar):
         memory_usage = memory_info.percent
         self.stats_label.setText(f"CPU: {cpu_usage}% | Memory: {memory_usage}%")
 
+
 class InsightHubMainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
