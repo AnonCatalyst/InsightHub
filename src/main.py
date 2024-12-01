@@ -114,7 +114,7 @@ class InsightHubMainWindow(QMainWindow):
         self.addToolBar(Qt.BottomToolBarArea, self.toolbar)
 
         # Toolbar Actions
-        buttons = ['HOME', 'CONTACTS', 'HELP', 'ABOUT', 'LOGGING']
+        buttons = ['HOME', 'CONTACTS', 'HELP', 'ABOUT']
         actions = {name: QAction(name, self) for name in buttons}
         for action in actions.values():
             self.toolbar.addAction(action)
