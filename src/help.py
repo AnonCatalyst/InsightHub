@@ -21,15 +21,7 @@ class HELPWindow(QWidget):
             <p>InsightHub is a tool designed to streamline various OSINT tasks, providing a user-friendly interface and efficient management of documents and data.</p>
 
             <h3>Getting Started</h3>
-            <p>To get started with InsightHub, explore the different features using the side menu. Visit the HOME window to learn more about its functionalities.</p>
-
-            <h3>Support and Contact</h3>
-            <ul>
-                <li>Email: hard2find.co.01@gmail.com</li>
-                <li>Instagram: @istoleyourbutter</li>
-                <li>Github: AnonCatalyst</li>
-                <li>Discord: 6TFBKgjaAz</li>
-            </ul>
+            <p>To get started with InsightHub, explore the different features using the side menu. Visit the HOME or ABOUT window to learn more about its functionalities.</p>
         """)
         layout.addWidget(help_content)
 
