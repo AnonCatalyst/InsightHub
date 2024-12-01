@@ -98,7 +98,7 @@ class Documenter(QWidget):
 
 
     def save_documents(self):
-        docs_directory = "docs"
+        docs_directory = "../docs"
         if not os.path.exists(docs_directory):
             os.makedirs(docs_directory)
 
@@ -129,7 +129,7 @@ class Documenter(QWidget):
         QMessageBox.information(self, "Success", "Documents saved successfully.")
 
     def save_individual_documents(self):
-        docs_directory = "src/docs"
+        docs_directory = "../docs"
         if not os.path.exists(docs_directory):
             os.makedirs(docs_directory)
 

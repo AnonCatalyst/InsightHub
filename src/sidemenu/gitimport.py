@@ -134,7 +134,7 @@ class GitHubImporter(QWidget):
         repo_name = repo_url.split("/")[-1].replace(".git", "")
         
         # Define the path where the repository will be cloned
-        imports_dir = os.path.join(os.getcwd(), "src", "sidemenu", "imports", repo_name)
+        imports_dir = os.path.join(os.getcwd(), "../", "src", "sidemenu", "imports", repo_name)
         
         # Ensure the imports directory exists
         if not os.path.exists(imports_dir):
@@ -173,7 +173,7 @@ class GitHubImporter(QWidget):
 
         # Clone repository if it hasn't been cloned yet
         repo_name = self.repo_url_input.text().split("/")[-1].replace(".git", "")
-        repo_path = os.path.join(os.getcwd(), "src", "sidemenu", "imports", repo_name)
+        repo_path = os.path.join(os.getcwd(), "../", "src", "sidemenu", "imports", repo_name)
 
         if not os.path.exists(repo_path):
             self.output_label.setText("Error: Repository is not cloned yet.")

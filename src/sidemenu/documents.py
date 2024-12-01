@@ -62,12 +62,12 @@ class DocumentsWindow(QWidget):
 
     def setup_ui(self):
         self.model = TaggedFileSystemModel()
-        self.model.setRootPath('docs')
+        self.model.setRootPath('../docs')
         self.model.setReadOnly(False)
 
         self.tree = QTreeView()
         self.tree.setModel(self.model)
-        self.tree.setRootIndex(self.model.index('docs'))
+        self.tree.setRootIndex(self.model.index('../docs'))
         self.tree.setSelectionMode(QTreeView.SelectionMode.ExtendedSelection)
         self.tree.setContextMenuPolicy(Qt.ContextMenuPolicy.ActionsContextMenu)
         self.tree.setDragDropMode(QTreeView.DragDropMode.DragDrop)

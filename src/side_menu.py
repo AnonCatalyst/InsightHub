@@ -6,7 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
 
 class SideMenuWidget(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, clone=False):
         super().__init__(parent)
         self.setStyleSheet(
             "background-color: #1b2b34; color: #ecf0f1; border-left: 2px solid #000; border-bottom: 2px solid #000;"
@@ -72,6 +72,10 @@ class SideMenuWidget(QWidget):
         self.setMaximumWidth(290)  # Ensure consistent width
         self.setMinimumHeight(400)  # Adjusted minimum height
 
+        # If clone is True, instantiate a cloned widget (optional)
+        if clone:
+            self.clone_widget()
+
     def on_button_click(self):
         """Handle button click event to open relevant functionality"""
         clicked_button = self.sender()
@@ -80,13 +84,13 @@ class SideMenuWidget(QWidget):
         # Here you can add logic to open specific sections when a button is clicked
         if button_name == "Operations Dashboard":
             print("Opening Operations Dashboard...")
-            self.run_script_in_background('src/sidemenu/op.py')
+            self.run_script_in_background('sidemenu/op.py')
         elif button_name == "Document Archive":
             print("Opening Document Archive...")
-            self.run_script_in_background('src/sidemenu/documents.py')
+            self.run_script_in_background('sidemenu/documents.py')
         elif button_name == "Documentation Center":
             print("Opening Documentation Center...")
-            self.run_script_in_background('src/sidemenu/documenter.py')
+            self.run_script_in_background('sidemenu/documenter.py')
         elif button_name == "Compression Center":
             print("Opening Compression Center...")
             # Add logic to open Compression Center
@@ -95,7 +99,7 @@ class SideMenuWidget(QWidget):
             # Add logic to open Secure File Transfer
         elif button_name == "GitHub Tool Integration":
             print("Opening GitHub Tool Integration...")
-            self.run_script_in_background('src/sidemenu/gitimport.py')
+            self.run_script_in_background('sidemenu/gitimport.py')
             # Add logic for GitHub Tool Integration
         elif button_name == "Advanced Toolset":
             print("Opening Advanced Toolset...")
@@ -122,3 +126,11 @@ class SideMenuWidget(QWidget):
         error_dialog.setInformativeText(message)
         error_dialog.setWindowTitle("Error")
         error_dialog.exec_()
+
+    def clone_widget(self):
+        """Clone the widget and add it to the layout"""
+        cloned_widget = SideMenuWidget(self, clone=False)  # Create a non-cloned instance of the widget
+        self.layout.addWidget(cloned_widget)
+        cloned_widget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        cloned_widget.setMinimumHeight(400)
+        cloned_widget.setMaximumHeight(600)

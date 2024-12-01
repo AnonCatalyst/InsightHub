@@ -145,7 +145,7 @@ def print_html(html_content, url, query, include_titles=True, include_descriptio
 def main(username, include_titles, include_descriptions, include_html_content):
     print(f"\n    {Fore.CYAN}ＡＬＩＡＳＴＯＲＭ{Style.RESET_ALL}\n")
 
-    url_file_path = "src/sidemenu/imports/AliaStorm/urls.txt"
+    url_file_path = "sidemenu/imports/AliaStorm/urls.txt"
     if not os.path.exists(url_file_path):
         print(f"❌ Error: URL file {url_file_path} does not exist.")
         return
