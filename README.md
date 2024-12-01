@@ -8,9 +8,9 @@
   
 - **Custom-Built Tools**: Every tool within InsightHub is crafted with precision, designed to meet the specific needs of OSINT practitioners. No more patchwork of third-party tools—InsightHub provides a fully integrated experience.
   
-- **Import Flexibility (Planned for Future Update)**: While InsightHub will feature a robust suite of built-in tools upon initial release, we understand the value of flexibility. The ability to import and integrate additional tools into the framework is planned for a future update. This feature will be developed to ensure that users can customize their OSINT environment according to their preferences.
+- **Import Flexibility**: While InsightHub features a robust suite of built-in tools upon initial release, we understand the value of flexibility. The ability to import and integrate additional tools into the framework is planned for a future update. This feature will be developed to ensure that users can customize their OSINT environment according to their preferences.
 
-- **Intuitive Interface**: The framework will include a menu system with buttons that open tools in new tabs, allowing for easy navigation and multitasking. Additional features, such as a Readme display viewer, will be incorporated to enhance usability and user support.
+- **Intuitive Interface**: The framework includes a menu system with buttons that open tools in new tabs, allowing for easy navigation and multitasking. Additional features, such as a Readme display viewer, will be incorporated to enhance usability and user support.
 
 ## **Development Status**
 
