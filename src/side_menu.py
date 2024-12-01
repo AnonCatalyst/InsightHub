@@ -95,6 +95,7 @@ class SideMenuWidget(QWidget):
             # Add logic to open Secure File Transfer
         elif button_name == "GitHub Tool Integration":
             print("Opening GitHub Tool Integration...")
+            self.run_script_in_background('src/sidemenu/gitimport.py')
             # Add logic for GitHub Tool Integration
         elif button_name == "Advanced Toolset":
             print("Opening Advanced Toolset...")
