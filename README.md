@@ -1,5 +1,5 @@
 # InsightHub Framework
-|| Development Active... ||
+`|| Development Active... ||`
 
 **InsightHub** is an ambitious project aimed at creating the ultimate **All-In-One (AIO) solution** for OSINT practitioners at all levels, from beginners to seasoned experts. The framework is designed to be a **one-stop shop** for all your OSINT needs, integrating a wide array of custom-built tools directly within the platform. The vision for InsightHub is to offer an intuitive and comprehensive environment where users can seamlessly perform diverse tasks without needing to switch between different applications or platforms.
 
